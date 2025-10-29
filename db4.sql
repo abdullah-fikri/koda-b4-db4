@@ -32,6 +32,8 @@ CREATE TABLE sign_in (
     id SERIAL PRIMARY KEY,
     email VARCHAR(50),
     password VARCHAR(50),
+    users_id INT
+    FOREIGN KEY (users_id) REFERENCES users(id)
     create_at timestamp default now(),
 	update_at timestamp default now()
 )
