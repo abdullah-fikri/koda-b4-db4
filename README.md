@@ -5,10 +5,14 @@ erDiagram
 
 users {
     int id
-    varchar(100) first_name
-    varchar(100) last_name
     varchar(50) email
     varchar(50) password
+}
+
+profile {
+    int id
+    varchar(100) name
+    varchar(100) phone
 }
 
 users_forgot {
@@ -29,6 +33,7 @@ forgot {
     varchar(50) new_password
 }
 
+profile ||--|| users : kredensial
 users ||--|| login : sign_in
 users ||--o{ users_forgot : forgot
 forgot ||--o{ users_forgot : reset

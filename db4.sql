@@ -8,6 +8,13 @@ CREATE TABLE users (
 	update_at timestamp default now()
 )
 
+CREATE TABLE profile_users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(100),
+    create_at TIMESTAMP DEFAULT now(),
+    update_at TIMESTAMP DEFAULT now() 
+)
 
 CREATE TABLE forgot (
     id SERIAL PRIMARY KEY,
@@ -38,3 +45,11 @@ CREATE TABLE sign_in (
 	update_at timestamp default now()
 )
 
+ALTER TABLE users DROP COLUMN first_name
+
+ALTER TABLE users DROP COLUMN last_name
+
+alter table users add column profile_id INT references profile_users(id)
+
+SELECT * FROM users
+JOIN profile_users ON profile_users.id = users.id
